@@ -18,14 +18,15 @@ class MyHomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Flutter App'),
-
       ),
       body: Column(
         children: <Widget>[
           Card(
             child: Text('CHART!'),
           ),
-          Card(child: Text('LIST OF TX'),)
+          Card(
+            child: Text('LIST OF TX'),
+          )
         ],
       ),
     );
