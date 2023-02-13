@@ -62,7 +62,19 @@ UserInput
 - GestureDetector
 - InkWell
 
+Containers vs Column / Row
+=
+
+|Container|Column/Row|
+|-------------------------|--------------------------|
+|Takes exactly one child widget|Takes multiple (unlimited) child widgets|
+|Rich alignment & styling options | Alignment but no styling options|
+|Flexible width (e.g child width, available width, ...)| Always takes full available height (column) / width (row)
+|Perfect for custom styling & alignment | Must-use if widgets sit next to/ above each other
+
+
 Resources
+-
 
 [Flutter widgets catalog](https://docs.flutter.dev/development/ui/widgets)<br>
 [Flutter API reference documentation!](api.flutter.dev)
