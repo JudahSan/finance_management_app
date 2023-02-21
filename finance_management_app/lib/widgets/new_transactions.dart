@@ -6,6 +6,26 @@ class NewTransaction extends StatelessWidget {
   final amountController = TextEditingController();
 
   NewTransaction(this.addTansX);
+
+  // Data submission
+  void dataSub() {
+    final enteredTitle = titleController.text;
+    final enteredAmount = double.parse(amountController.text);
+
+    // Dummy validation
+    if (enteredTitle.isEmpty || enteredAmount <= 0) {
+      return;
+    }
+
+    addTansX(
+      enteredTitle,
+      enteredAmount,
+      
+
+      // I number is invalid, app will break
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -25,8 +45,11 @@ class NewTransaction extends StatelessWidget {
                 ),
               ),
               controller: titleController,
+              onSubmitted: (_) => dataSub(),
             ),
-            SizedBox(height: 25.0,),
+            SizedBox(
+              height: 25.0,
+            ),
             TextField(
               decoration: InputDecoration(
                 labelText: 'Amount',
@@ -36,15 +59,11 @@ class NewTransaction extends StatelessWidget {
               ),
               controller: amountController,
               // onChanged: (value) => amountInput = value,
+              keyboardType: TextInputType.number,
+              onSubmitted: (_) => dataSub(),
             ),
             TextButton(
-              onPressed: () {
-                addTansX(
-                  titleController.text,
-                  double.parse(amountController.text),
-                  // I number is invalid, app will break
-                );
-              },
+              onPressed: dataSub,
               child: Text(
                 'Add Transaction',
                 style: TextStyle(
