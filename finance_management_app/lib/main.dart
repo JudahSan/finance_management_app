@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
-import './transaction.dart';
+import './widgets/user_transactions.dart';
 
 void main() => runApp(MyApp());
 
@@ -15,101 +14,42 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatelessWidget {
-  final List<Transaction> transactions = [
-    Transaction(
-      id: 't1',
-      title: 'New watch',
-      amount: 99.99,
-      date: DateTime.now(),
-    ),
-    Transaction(
-      id: 't2',
-      title: 'GTR maitenance',
-      amount: 230.00,
-      date: DateTime.now(),
-    ),
-  ];
+  // String titleInput;
+  // String amountInput;
+  final titleController = TextEditingController();
+  final amountController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Flutter App'),
-      ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: <Widget>[
-          Card(
-            child: Container(
-              color: Colors.greenAccent,
-              width: double.infinity,
-              child: Text(
-                'CHART!',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.blue,
-                ),
-              ),
-            ),
-            elevation: 5,
-          ),
-          // Mapping Data into Widgets
-          Column(
-            children: transactions.map((transX) {
-              return Card(
-                child: Row(
-                  children: <Widget>[
-                    Container(
-                      margin: EdgeInsets.symmetric(
-                        vertical: 10,
-                        horizontal: 20,
-                      ),
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          color: Colors.green,
-                          width: 2,
-                        ),
-                      ),
-                      padding: EdgeInsets.all(8),
-                      child: Text(
-                        '\$ ${transX.amount}',
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.green,
-                        ),
-                      ),
+        appBar: AppBar(
+          title: Text('Flutter App'),
+        ),
+        body: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
+              Card(
+                child: Container(
+                  color: Color.fromARGB(255, 64, 169, 218),
+                  width: double.infinity,
+                  child: Text(
+                    'CHART!',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: Color.fromARGB(255, 228, 50, 160),
                     ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Text(
-                          transX.title,
-                          style: TextStyle(
-                            fontSize: 15,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black,
-                          ),
-                        ),
-                        Text(
-                          // DateFormat('dd-MM-yyyy').format(transX.date),
-                          DateFormat.yMMMMd().format(transX.date),
-                          style: TextStyle(
-                            fontSize: 15,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.grey,),
-                        ),
-                      ],
-                    )
-                  ],
+                  ),
                 ),
-              );
-            }).toList(),
+                elevation: 5,
+              ),
+              UserTransactions()
+
+              // Mapping Data into Widgets
+            ],
           ),
-        ],
-      ),
-    );
+        ));
   }
 }

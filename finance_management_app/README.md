@@ -137,6 +137,13 @@ Examples Using the US Locale:
 | new DateFormat.yMd().add_jm()  |  -> |7/10/1996 5:08 PM|
 | new DateFormat.Hm()            |  ->| 17:08 // force 24 hour time|
 
+
+ListView
+-
+
+    - `ListView(children: [])`
+    - `ListView.builder()` - only load what's visible
+    
 Resources
 -
 
