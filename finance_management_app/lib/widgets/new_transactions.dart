@@ -75,7 +75,7 @@ class _NewTransactionState extends State<NewTransaction> {
               child: Text(
                 'Add Transaction',
                 style: TextStyle(
-                  color: Colors.pink,
+                  color: Colors.yellow,
                 ),
               ),
               style: ButtonStyle(
