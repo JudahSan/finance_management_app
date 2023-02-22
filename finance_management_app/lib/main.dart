@@ -31,8 +31,8 @@ class MyApp extends StatelessWidget {
                 ))
                 .titleLarge,
           ),
-          colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.red)
-              .copyWith(secondary: Colors.amber)),
+          colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.green)
+              .copyWith(secondary: Colors.blue)),
       home: MyHomePage(),
     );
   }
@@ -46,18 +46,18 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   // String titleInput;
   final List<Transaction> _userTransactions = [
-    Transaction(
-      id: 't1',
-      title: 'New watch',
-      amount: 99.99,
-      date: DateTime.now(),
-    ),
-    Transaction(
-      id: 't2',
-      title: 'GTR maitenance',
-      amount: 230.00,
-      date: DateTime.now(),
-    ),
+    // Transaction(
+    //   id: 't1',
+    //   title: 'New watch',
+    //   amount: 99.99,
+    //   date: DateTime.now(),
+    // ),
+    // Transaction(
+    //   id: 't2',
+    //   title: 'GTR maitenance',
+    //   amount: 230.00,
+    //   date: DateTime.now(),
+    // ),
   ];
 
   // New transaction
