@@ -9,7 +9,30 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter App',
+      title: 'Expense App',
+      theme: ThemeData(
+          fontFamily: 'Quicksand',
+          textTheme: ThemeData.light().textTheme.copyWith(
+                titleLarge: TextStyle(
+                  fontFamily: 'OpenSans',
+                  fontWeight: FontWeight.bold,
+                  fontSize: 14,
+                ),
+              ),
+          appBarTheme: AppBarTheme(
+            toolbarTextStyle: ThemeData.light().textTheme.copyWith().bodyMedium,
+            titleTextStyle: ThemeData.light()
+                .textTheme
+                .copyWith(
+                    titleLarge: TextStyle(
+                  fontFamily: 'OpenSans',
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ))
+                .titleLarge,
+          ),
+          colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.red)
+              .copyWith(secondary: Colors.amber)),
       home: MyHomePage(),
     );
   }
@@ -68,7 +91,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Flutter App'),
+        title: Text('Expense App', style: TextStyle(fontFamily: 'OpenSans')),
         actions: <Widget>[
           IconButton(
             onPressed: () => _startAddNewTransaction(context),
@@ -83,14 +106,14 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
             Card(
               child: Container(
-                color: Color.fromARGB(255, 64, 169, 218),
+                color: Theme.of(context).primaryColorLight,
                 width: double.infinity,
                 child: Text(
                   'CHART!',
                   style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
-                    color: Color.fromARGB(255, 228, 50, 160),
+                    color: Theme.of(context).primaryColorDark,
                   ),
                 ),
               ),

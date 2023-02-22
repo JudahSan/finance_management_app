@@ -22,7 +22,7 @@ class TransactionList extends StatelessWidget {
                   ),
                   decoration: BoxDecoration(
                     border: Border.all(
-                      color: Colors.pink,
+                      color: Theme.of(context).primaryColorDark,
                       width: 2,
                     ),
                   ),
@@ -32,7 +32,7 @@ class TransactionList extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
-                      color: Colors.pink,
+                      color: Theme.of(context).primaryColor,
                     ),
                   ),
                 ),
@@ -41,12 +41,9 @@ class TransactionList extends StatelessWidget {
                   children: <Widget>[
                     Text(
                       transactions[index].title,
-                      style: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black,
+                      style: Theme.of(context).textTheme.titleLarge,
                       ),
-                    ),
+                    
                     Text(
                       // DateFormat('dd-MM-yyyy').format(transactions.date),
                       DateFormat.yMMMMd().format(transactions[index].date),
