@@ -21,6 +21,7 @@ class MyApp extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                   fontSize: 14,
                 ),
+
               ),
           appBarTheme: AppBarTheme(
             toolbarTextStyle: ThemeData.light().textTheme.copyWith().bodyMedium,
