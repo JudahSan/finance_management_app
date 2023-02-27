@@ -143,6 +143,19 @@ ListView
 
     - `ListView(children: [])`
     - `ListView.builder()` - only load what's visible
+
+Flutter Basics
+-
+
+- Compose UI from built-in and custom Widgets.
+- Custom Widgets are also composed from built-in and other custom Widgets.
+- Style and configure via arguments.
+- Use the docs and IDE support.
+
+Styling and Configuring Widgets
+-
+
+- Styling and layout options are very different: `EdgeInsets.all()`, `BoxDecoration()`, enums, ... => Docs + IDE support help you.
     
 Resources
 -
