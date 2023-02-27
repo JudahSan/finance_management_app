@@ -17,17 +17,21 @@ class _NewTransactionState extends State<NewTransaction> {
 
   // Data submission
   void _dataSubmission() {
+    if (_amountController.text.isEmpty) {
+      return;
+    }
     final enteredTitle = _titleController.text;
     final enteredAmount = double.parse(_amountController.text);
 
     // Dummy validation
-    if (enteredTitle.isEmpty || enteredAmount <= 0) {
+    if (enteredTitle.isEmpty || enteredAmount <= 0 || _selectDate == null) {
       return;
     }
 
     widget.addTansX(
       enteredTitle,
       enteredAmount,
+      _selectDate,
 
       // I number is invalid, app will break
     );
