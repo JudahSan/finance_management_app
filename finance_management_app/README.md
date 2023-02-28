@@ -143,9 +143,43 @@ ListView
 
     - `ListView(children: [])`
     - `ListView.builder()` - only load what's visible
+
+Flutter Basics
+-
+
+- Compose UI from built-in and custom Widgets.
+- Custom Widgets are also composed from built-in and other custom Widgets.
+- Style and configure via arguments.
+- Use the docs and IDE support.
+
+Styling and Configuring Widgets
+-
+
+- Styling and layout options are very different: `EdgeInsets.all()`, `BoxDecoration()`, enums, ... => Docs + IDE support help you.
+- Often, there's more than one Widget or option to get the job done.
+
+Theming
+-
+
+- Define a global theme for colors and text to then tap into it from anywhere in the app via Theme.of(context)
+- Built-in Widgets use Theme settings automatically.
+
+Business Logic
+-
+
+- Lift state up and use stateful widgets only when needed.
+- Pass functions references and data around.
+- Adjust the UI to your logic.
     
 Resources
 -
 
-[Flutter widgets catalog](https://docs.flutter.dev/development/ui/widgets)<br>
-[Flutter API reference documentation!](api.flutter.dev)
+- [More on Layouting (with Column(), Row() etc.): ](https://flutter.dev/docs/development/ui/layout)
+
+- [More on Images & Assets:](https://flutter.dev/docs/development/ui/assets-and-images)
+
+- [Official Widget Catalog: ](https://flutter.dev/docs/development/ui/widgets)
+
+- [Material Design Docs: ](https://material.io/design/)
+
+- [Flutter Theming: ](https://flutter.dev/docs/cookbook/design/themes)
