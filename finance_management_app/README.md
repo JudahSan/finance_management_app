@@ -171,6 +171,32 @@ Business Logic
 - Pass functions references and data around.
 - Adjust the UI to your logic.
     
+Respinsive and Adaptive User Interfaces
+-
+
+`textScaleFactor`
+-
+
+```dart
+final curScaleFactor = MediaQuery.of(context).textScaleFactor;
+```
+
+- `textScaleFactor` tells you by how much text output in the app should be scaled. Users can change this in their mobile phone / device settings.
+- Depending on your app, you might want to consider using this piece of information when setting font sizes.
+
+- Consider this example:
+
+ - Text('Always the same size!', style: TextStyle(fontSize: 20));
+ - This text ALWAYS has a size of 20 device pixels, no matter what the user changed in his / her device settings.
+
+  ```dart
+  Text('This changes!', style: TextStyle(fontSize: 20 * curScaleFactor));
+  ```
+
+ - This text on the other hand also has a size of 20 if the user didn't change anything in the settings (because textScaleFactor by default is 1). But if changes were made, the font size of this text respects the user settings.
+
+
+
 Resources
 -
 
@@ -183,3 +209,5 @@ Resources
 - [Material Design Docs: ](https://material.io/design/)
 
 - [Flutter Theming: ](https://flutter.dev/docs/cookbook/design/themes)
+
+- [Constraints](https://docs.flutter.dev/development/ui/layout/constraints)
