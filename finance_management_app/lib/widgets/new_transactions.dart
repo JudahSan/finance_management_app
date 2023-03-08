@@ -58,75 +58,82 @@ class _NewTransactionState extends State<NewTransaction> {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      child: Container(
-        padding: EdgeInsets.all(20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: <Widget>[
-            TextField(
-              // onChanged: (value) {
-              //   titleInput = value;
-              // } ,
-              decoration: InputDecoration(
-                labelText: 'Title',
-                border: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.amber),
-                ),
-              ),
-              controller: _titleController,
-              onSubmitted: (_) => _dataSubmission(),
-            ),
-            SizedBox(
-              height: 25.0,
-            ),
-            TextField(
-              decoration: InputDecoration(
-                labelText: 'Amount',
-                border: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.blue),
-                ),
-              ),
-              controller: _amountController,
-              // onChanged: (value) => amountInput = value,
-              keyboardType: TextInputType.number,
-              onSubmitted: (_) => _dataSubmission(),
-            ),
-            Container(
-              height: 70,
-              child: Row(
-                children: <Widget>[
-                  Expanded(
-                    child: Text(
-                      _selectDate == null
-                          ? 'No Date Selected!'
-                          : 'Selected Date: ${DateFormat.yMd().format(_selectDate)}',
-                    ),
+    return SingleChildScrollView(
+      child: Card(
+        child: Container(
+          padding: EdgeInsets.only(
+            top: 10,
+            left: 10,
+            right: 10,
+            bottom: MediaQuery.of(context).viewInsets.bottom + 10,
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: <Widget>[
+              TextField(
+                // onChanged: (value) {
+                //   titleInput = value;
+                // } ,
+                decoration: InputDecoration(
+                  labelText: 'Title',
+                  border: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.amber),
                   ),
-                  TextButton(
-                    style: ButtonStyle(),
-                    onPressed: _presentDatePicker,
-                    child: Text(
-                      'Select Date',
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                  )
-                ],
+                ),
+                controller: _titleController,
+                onSubmitted: (_) => _dataSubmission(),
               ),
-            ),
-            TextButton(
-              onPressed: _dataSubmission,
-              child: Text(
-                'Add Transaction',
-                style: TextStyle(
-                  color: Colors.black,
+              SizedBox(
+                height: 25.0,
+              ),
+              TextField(
+                decoration: InputDecoration(
+                  labelText: 'Amount',
+                  border: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.blue),
+                  ),
+                ),
+                controller: _amountController,
+                // onChanged: (value) => amountInput = value,
+                keyboardType: TextInputType.number,
+                onSubmitted: (_) => _dataSubmission(),
+              ),
+              Container(
+                height: 70,
+                child: Row(
+                  children: <Widget>[
+                    Expanded(
+                      child: Text(
+                        _selectDate == null
+                            ? 'No Date Selected!'
+                            : 'Selected Date: ${DateFormat.yMd().format(_selectDate)}',
+                      ),
+                    ),
+                    TextButton(
+                      style: ButtonStyle(),
+                      onPressed: _presentDatePicker,
+                      child: Text(
+                        'Select Date',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    )
+                  ],
                 ),
               ),
-              style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all<Color>(Colors.amber),
+              TextButton(
+                onPressed: _dataSubmission,
+                child: Text(
+                  'Add Transaction',
+                  style: TextStyle(
+                    color: Colors.black,
+                  ),
+                ),
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all<Color>(Colors.amber),
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
