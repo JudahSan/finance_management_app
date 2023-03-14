@@ -195,7 +195,27 @@ final curScaleFactor = MediaQuery.of(context).textScaleFactor;
 
  - This text on the other hand also has a size of 20 if the user didn't change anything in the settings (because textScaleFactor by default is 1). But if changes were made, the font size of this text respects the user settings.
 
+Widget Tree and Element Tree
+-
 
+|Widget Tree |Element Tree     |Render Tree(What you see on the screen)|
+|------------|-----------------|----------------------------------------|
+|Configuration (rebuilds frequently)|Links widgets with rendered object(rarely rebuilds)| Rendered objects on the screen (rarely rebuilds)|
+|Container <- Ref| Container Element ->| Render Box|
+| `↳` | _ | _ |
+|Column|Column Element|
+|MyStateless|MyStateless Element|
+|MyStateful|MyStateful Element|
+
+How Flutter Rebuildes & Repaints the Screen
+-
+
+- `build()` runs very often and re-builds the widget tree (or part of it).
+- Methods of reducing the amount of widgets (including built-in widgets) affected by build()
+    - Splitting the app into multiple (small) custom widgets
+    - Using const constructors and widgets.
+    
+![flutter](img/widget-element-tree.png)
 
 Resources
 -
@@ -211,3 +231,11 @@ Resources
 - [Flutter Theming: ](https://flutter.dev/docs/cookbook/design/themes)
 
 - [Constraints](https://docs.flutter.dev/development/ui/layout/constraints)
+
+- [More on MediaQuery & Responsive Layouts:](https://api.flutter.dev/flutter/widgets/MediaQuery-class.html) & [More](https://stackoverflow.com/questions/49704497/how-to-make-flutter-app-responsive-according-to-different-screen-size?rq=1)
+
+- [More on LayoutBuilder: ](https://api.flutter.dev/flutter/widgets/LayoutBuilder-class.html)
+
+- [All Cupertino Widgets: ](https://flutter.dev/docs/development/ui/widgets/cupertino)
+
+- [Flutter indepth](https://docs.flutter.dev/resources/inside-flutter)

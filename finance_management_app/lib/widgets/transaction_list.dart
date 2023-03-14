@@ -17,7 +17,7 @@ class TransactionList extends StatelessWidget {
                   'No Transaction Recorded!',
                   style: Theme.of(context).textTheme.titleLarge,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 Container(
@@ -57,8 +57,8 @@ class TransactionList extends StatelessWidget {
                   ),
                   trailing: MediaQuery.of(context).size.width > 460
                       ? TextButton.icon(
-                          icon: Icon(Icons.delete),
-                          label: Text('Delete'),
+                          icon: const Icon(Icons.delete),
+                          label: const Text('Delete'),
                           style: ButtonStyle(
                             foregroundColor: MaterialStateProperty.all(
                               Theme.of(context).colorScheme.error,
@@ -68,7 +68,7 @@ class TransactionList extends StatelessWidget {
                         )
 
                       : IconButton(
-                          icon: Icon(Icons.delete),
+                          icon: const Icon(Icons.delete),
                           color: Theme.of(context).colorScheme.error,
                           onPressed: () => deleteTx(transactions[index].id),
                         ),
