@@ -207,15 +207,26 @@ Widget Tree and Element Tree
 |MyStateless|MyStateless Element|
 |MyStateful|MyStateful Element|
 
-How Flutter Rebuildes & Repaints the Screen
+How Flutter Rebuilds & Repaints the Screen
 -
 
 - `build()` runs very often and re-builds the widget tree (or part of it).
 - Methods of reducing the amount of widgets (including built-in widgets) affected by build()
     - Splitting the app into multiple (small) custom widgets
     - Using const constructors and widgets.
-    
+
 ![flutter](img/widget-element-tree.png)
+
+Refactoring
+-
+
+|Readability/Understandability| Performance |
+|-----------------------------|-------------|
+|You should understand your code and be able to maintain/change it| Certain practices (can) imrpove app performance|
+| Think about your "future self!"| But: Missing possible improvements doesn't automatically result in a bad/ laggy app|
+|Others should understand your code and be able to maintain/change it| Always re-evaluate your code, explore new best practices|
+
+- Extracting widget using refactoring tool
 
 Resources
 -
