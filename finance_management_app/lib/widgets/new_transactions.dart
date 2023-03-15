@@ -9,16 +9,50 @@ import 'adaptive_text_button.dart';
 class NewTransaction extends StatefulWidget {
   final Function addTansX;
 
-  NewTransaction(this.addTansX);
+  NewTransaction(this.addTansX) {
+    print('Constructor NewTransaction Widget');
+  }
 
   @override
-  State<NewTransaction> createState() => _NewTransactionState();
+  _NewTransactionState createState() {
+    print('createState NewTransaction Widget');
+    return _NewTransactionState();
+  }
 }
 
 class _NewTransactionState extends State<NewTransaction> {
   final _titleController = TextEditingController();
   final _amountController = TextEditingController();
   DateTime _selectDate;
+
+  _NewTransactionState() {
+    print('Constructor NewTransation State');
+  }
+
+  // initState
+  // fetching initial data
+
+  @override
+  void initState() {
+    print('initState()');
+    super.initState();
+  }
+
+  // didUpdate
+  // fetching data from a state
+  @override
+  void didUpdateWidget(NewTransaction oldWidget) {
+    print('didUPdateWidget()');
+    super.didUpdateWidget(oldWidget);
+  }
+
+  // dispose
+  // clean listeners or live connection
+  @override
+  void dispose() {
+    print('dispose()');
+    super.dispose();
+  }
 
   // Data submission
   void _dataSubmission() {
