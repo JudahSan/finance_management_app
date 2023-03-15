@@ -11,3 +11,5 @@ To use the Finance Management App, follow these steps:
 - Install Flutter and Dart on your machine.
 - Open the project in your preferred IDE.
 - Run the app on an emulator or a physical device.
+
+## TODO: Add storage service: SQLite db, shared preference or File Storage.
