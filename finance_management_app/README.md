@@ -293,6 +293,12 @@ App Lifecycle
 | resumed | App is (again) visible and responding to user input|
 | suspending | App is about to be suspended (exited)|
 
+Keys, Lists, Statefule Widgets
+-
+
+- Keys are needed to help Flutter link elements (element trees) and widgets (widget trees) correctly.
+- Keys only matter if you're working with stateful widgets ina list because state objects are attacked to the element, not the widget.
+
 Resources
 -
 
@@ -315,3 +321,15 @@ Resources
 - [All Cupertino Widgets: ](https://flutter.dev/docs/development/ui/widgets/cupertino)
 
 - [Flutter indepth](https://docs.flutter.dev/resources/inside-flutter)
+
+- Official Flutter Widget Intro + Deep Dive:
+
+    - [Part 1 (Stateless Widgets): ](https://www.youtube.com/watch?v=wE7khGHVkYY)
+
+    - [Part 2 (Stateful Widgets, Widget Tree, Element Tree): ](https://www.youtube.com/watch?v=AqCMFXEmf3w)
+
+    - [Part 3 (Inherited Widget/ Context): ](https://www.youtube.com/watch?v=Zbm3hjPjQMk)
+
+    - [Part 4 (Keys): ](https://www.youtube.com/watch?v=kn0EOS-ZiIc)
+
+    - [App Lifecycle: ](https://medium.com/pharos-production/flutter-app-lifecycle-4b0ab4a4211a)
