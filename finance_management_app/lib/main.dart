@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/services.dart';
 
 import './models/transaction.dart';
 import './widgets/transaction_list.dart';
@@ -38,11 +37,12 @@ class MyApp extends StatelessWidget {
             titleTextStyle: ThemeData.light()
                 .textTheme
                 .copyWith(
-                    titleLarge: TextStyle(
-                  fontFamily: 'OpenSans',
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ))
+                  titleLarge: TextStyle(
+                    fontFamily: 'OpenSans',
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                )
                 .titleLarge,
           ),
           colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.amber)
@@ -57,7 +57,7 @@ class MyHomePage extends StatefulWidget {
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
   // String titleInput;
   final List<Transaction> _userTransactions = [
     // Transaction(
@@ -75,6 +75,28 @@ class _MyHomePageState extends State<MyHomePage> {
   ];
 
   bool _showChart = false;
+
+  // listener
+  @override
+  void initState() {
+    // ignore: todo
+    // TODO: implement initState
+    WidgetsBinding.instance.addObserver(this);
+    super.initState();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    print(state);
+  }
+
+  // Clear listener when not needed
+
+  @override
+  dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
 
   List<Transaction> get _recentTransactions {
     return _userTransactions.where((transX) {
@@ -119,6 +141,54 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  // Builder methods
+
+  List<Widget> _buildLandscapeContent(
+    MediaQueryData mediaQuery,
+    AppBar appBar,
+    Widget txtListWidget,
+  ) {
+    return [
+      Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Text('Display Chart', style: Theme.of(context).textTheme.titleLarge),
+          Switch.adaptive(
+            value: _showChart,
+            onChanged: (val) {
+              setState(() {
+                _showChart = val;
+              });
+            },
+          ),
+        ],
+      ),
+      _showChart
+          ? Container(
+              height: (mediaQuery.size.height -
+                      appBar.preferredSize.height -
+                      mediaQuery.padding.top) *
+                  0.7,
+              child: Chart(_recentTransactions),
+            )
+          : txtListWidget
+    ];
+  }
+
+  List<Widget> _buildPortraitContent(
+      MediaQueryData mediaQuery, AppBar appBar, Widget txtListWidget) {
+    return [
+      Container(
+        height: (mediaQuery.size.height -
+                appBar.preferredSize.height -
+                mediaQuery.padding.top) *
+            0.3,
+        child: Chart(_recentTransactions),
+      ),
+      txtListWidget
+    ];
+  }
+
   @override
   Widget build(BuildContext context) {
     final mediaQuery = MediaQuery.of(context);
@@ -161,41 +231,13 @@ class _MyHomePageState extends State<MyHomePage> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             if (isLandscape)
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Text('Display Chart',
-                      style: Theme.of(context).textTheme.titleLarge),
-                  Switch.adaptive(
-                    value: _showChart,
-                    onChanged: (val) {
-                      setState(() {
-                        _showChart = val;
-                      });
-                    },
-                  ),
-                ],
-              ),
+              ..._buildLandscapeContent(mediaQuery, appBar, txtListWidget),
             if (!isLandscape)
-              Container(
-                height: (mediaQuery.size.height -
-                        appBar.preferredSize.height -
-                        mediaQuery.padding.top) *
-                    0.3,
-                child: Chart(_recentTransactions),
+              ..._buildPortraitContent(
+                mediaQuery,
+                appBar,
+                txtListWidget,
               ),
-            if (!isLandscape) txtListWidget,
-
-            if (isLandscape)
-              _showChart
-                  ? Container(
-                      height: (mediaQuery.size.height -
-                              appBar.preferredSize.height -
-                              mediaQuery.padding.top) *
-                          0.7,
-                      child: Chart(_recentTransactions),
-                    )
-                  : txtListWidget
 
             // Mapping Data into Widgets
           ],

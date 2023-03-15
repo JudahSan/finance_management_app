@@ -207,15 +207,91 @@ Widget Tree and Element Tree
 |MyStateless|MyStateless Element|
 |MyStateful|MyStateful Element|
 
-How Flutter Rebuildes & Repaints the Screen
+How Flutter Rebuilds & Repaints the Screen
 -
 
 - `build()` runs very often and re-builds the widget tree (or part of it).
 - Methods of reducing the amount of widgets (including built-in widgets) affected by build()
     - Splitting the app into multiple (small) custom widgets
     - Using const constructors and widgets.
-    
+
 ![flutter](img/widget-element-tree.png)
+
+Refactoring
+-
+
+|Readability/Understandability| Performance |
+|-----------------------------|-------------|
+|You should understand your code and be able to maintain/change it| Certain practices (can) imrpove app performance|
+| Think about your "future self!"| But: Missing possible improvements doesn't automatically result in a bad/ laggy app|
+|Others should understand your code and be able to maintain/change it| Always re-evaluate your code, explore new best practices|
+
+- Extracting widget using refactoring tool
+
+Widget Lifecycle
+-
+
+|Stateless Widgets|Stateful Widgets|
+|----------------|--------------------|
+|Constructor Function| Constructor Function|
+|⬇|`initState()`|
+|⬇|`build()`|
+|⬇|`setState()`|
+|`build()`|`didUpdateWidget`|
+||`build()`|
+||`dispose()`|
+
+Calling super.initState() etc.
+-
+
+`super.initState()` and similar methods are called when overriding built-in methods.
+
+- Example:
+
+```dart
+@override
+void initState() {
+    print('Do something...');
+    super.initState();
+}
+```
+
+- Whilst it won't make a visual (or performance-related) difference, it is actually now recommended to call `super.initState()` (etc.) __FIRST__:
+
+```dart
+@override
+void initState() {
+    super.initState();
+    print('Do something...');
+}
+```
+
+- In production, the order will actually NOT make any difference. The only code executed by `initState()` in the parent class checks whether "everything is working as intended". It's a debugging-only check, which will have no impact in production mode.
+
+- In case you're interested, this is the code inside of the built-in initState() method:
+
+```dart
+@protected
+@mustCallSuper
+void initState() {
+    assert(_debugLifecycleState == _StateLifecycle.created);
+}
+```
+
+- `assert` is a Dart function that tests a condition and throws an error if it's not met. `_debugLifecycleState` is a property managed by Flutter to find out in which phase the state object currently is. During production, asserts aren't executed and `_debugLifecycleState` is not set.
+
+- During development, you'll also not face any problems because of changed order. Additional built-in checks will still run properly, the only minor difference is that some of your code may run before the check runs (which won't affect the check though, it'll still work properly).
+
+
+App Lifecycle
+-
+
+|Lifecycle State Name| When is it hit?|
+|----------------------|----------------------|
+| inactive | App is inactive, no user input receieved |
+| paused | App not visible to user, running in background |
+| resumed | App is (again) visible and responding to user input|
+| suspending | App is about to be suspended (exited)|
 
 Resources
 -
